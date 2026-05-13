@@ -1,15 +1,6 @@
 import { useState } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  Form,
-  ProgressBar,
-  Row,
-} from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
-// Типы данных
 interface Question {
   id: number;
   question: string;
@@ -23,191 +14,294 @@ interface QuizPageProps {
 }
 
 export default function QuizPage({ onExit }: QuizPageProps) {
-  // Состояния квиза
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [isChecked, setIsChecked] = useState(false);
   const [score, setScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
 
-  // Данные (добавил еще один вопрос для демонстрации переключения)
   const questions: Question[] = [
     {
       id: 1,
       question:
-        "Как называется основной компонент в React Bootstrap для создания сетки?",
-      options: ["Box", "Container", "Div", "Section"],
-      correctAnswer: "Container",
-      image: "https://placehold.co/600x400/7D2826/white?text=React+Bootstrap",
-    },
-    {
-      id: 2,
-      question:
-        "Какой хук используется для управления состоянием в функциональном компоненте?",
-      options: ["useEffect", "useState", "useContext", "useReducer"],
-      correctAnswer: "useState",
-      image: "https://placehold.co/600x400/28267D/white?text=React+Hooks",
+        "Выпускникам духовных семинарий и академий в имерии было запрещено поступать на естественные отделения университетов. На какой факультет Петербургского университета пришлось поступить Ухтомскому в 1899 году, чтобы год спустя все же перевестись на физико-математический?",
+      options: [
+        "Историко-филологический",
+        "Восточный",
+        "Юридический",
+        "Физико-математический (он сразу поступил туда, преодолев запрет)",
+      ],
+      correctAnswer: "Юридический",
+      image: "",
     },
   ];
 
-  const totalQuestions = questions.length;
+  const totalQuestions = 15;
+  const progressPercent = Math.round((currentStep / totalQuestions) * 100);
 
-  const progressPercent = Math.round(
-    ((currentStep + 1) / totalQuestions) * 100,
-  );
-
-  const handleOptionChange = (value: string) => {
-    setSelectedOption(value);
-  };
-
-  const handleNextQuestion = () => {
+  const handleCheckOrNext = () => {
     if (!selectedOption) return;
 
-    // Проверка ответа
-    const isCorrect = selectedOption === questions[currentStep].correctAnswer;
-    if (isCorrect) {
-      setScore((prev) => prev + 1);
-    }
-
-    // Логика перехода
-    if (currentStep < totalQuestions - 1) {
-      setCurrentStep((prev) => prev + 1);
-      setSelectedOption(null);
+    if (!isChecked) {
+      setIsChecked(true);
+      if (selectedOption === questions[currentStep].correctAnswer) {
+        setScore((s) => s + 1);
+      }
     } else {
-      setIsFinished(true);
+      if (currentStep < questions.length - 1) {
+        setCurrentStep((s) => s + 1);
+        setSelectedOption(null);
+        setIsChecked(false);
+      } else {
+        setIsFinished(true);
+      }
     }
   };
 
-  // Экран завершения
+  const getOptionStyle = (option: string) => {
+    if (!isChecked) return { color: "#2d3220" };
+    if (option === questions[currentStep].correctAnswer)
+      return { color: "#28a745", fontWeight: "bold" };
+    if (option === selectedOption)
+      return { color: "#dc3545", fontWeight: "bold" };
+    return { color: "#2d3220", opacity: 0.5 };
+  };
+
   if (isFinished) {
     return (
-      <Container className="text-center py-5">
-        <Card
-          className="shadow-sm border-0 p-5"
-          style={{ borderRadius: "24px" }}
+      <Container
+        className="py-4 py-md-5 flex-grow-1 text-inter-custom"
+        style={{ maxWidth: "900px" }}
+      >
+        {/* Прогресс-бар 100% */}
+        <div
+          className="text-center mb-2 small fw-bold"
+          style={{ color: "#2d3220" }}
         >
-          <h1 className="mb-4">Квиз завершен!</h1>
-          <h3 className="mb-4">
-            Ваш результат: <span className="text-success fw-bold">{score}</span>{" "}
-            из {totalQuestions}
-          </h3>
-          <p className="text-muted mb-4">
-            {score === totalQuestions
-              ? "Отличная работа! Вы настоящий эксперт."
-              : "Хорошая попытка! Попробуйте еще раз, чтобы улучшить результат."}
-          </p>
-          <div className="d-flex justify-content-center gap-3">
-            <Button variant="outline-dark" onClick={onExit}>
-              Выйти в меню
-            </Button>
-            <Button
-              style={{ backgroundColor: "#7D2826", border: "none" }}
-              onClick={() => window.location.reload()}
+          Прогресс: 100%
+        </div>
+        <div
+          className="mb-4"
+          style={{
+            height: "20px",
+            backgroundColor: "#3a3f2d",
+            borderRadius: "10px",
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              backgroundColor: "#2d3220",
+            }}
+          />
+        </div>
+
+        <Row className="align-items-start gx-md-5 justify-content-center">
+          {/* Текстовый блок: Первый на мобилке (order-1), второй на десктопе (order-md-2) */}
+          <Col
+            xs={{ span: 12, order: 1 }}
+            md={{ span: 6, order: 2 }}
+            className="text-start  pt-2"
+          >
+            <h2
+              className="fw-bold mb-1"
+              style={{ color: "#2d3220", fontSize: "2.5rem" }}
             >
-              Пройти еще раз
-            </Button>
-          </div>
-        </Card>
+              Ваш результат
+            </h2>
+            <p
+              className="fw-bold mb-0"
+              style={{ color: "#2d3220", fontSize: "0.95rem" }}
+            >
+              Поздравляем! Ваш результат:
+            </p>
+            <p
+              className="mb-3"
+              style={{ color: "#2d3220", fontSize: "0.9rem", opacity: 0.7 }}
+            >
+              &lt;комментарий по результату&gt;
+            </p>
+
+            {/* Счет: (от 0 до 15) / 15 */}
+            <div
+              className="display-4 fw-bold mb-4 mb-md-5"
+              style={{
+                color: "rgba(255, 255, 255, 0.9)",
+                letterSpacing: "-1px",
+              }}
+            >
+              ({score} до 15) / 15
+            </div>
+          </Col>
+
+          {/* Картинка: Вторая на мобилке (order-2), первая на десктопе (order-md-1) */}
+          <Col
+            xs={{ span: 10, order: 2 }}
+            md={{ span: 6, order: 1 }}
+            className="mb-4 mb-md-0 d-flex justify-content-center"
+          >
+            <div
+              className="rounded-4 shadow-sm w-100"
+              style={{
+                aspectRatio: "1/1",
+                maxWidth: "320px", // Ограничение размера на мобилке
+                background: questions[0].image
+                  ? `url(${questions[0].image}) center/cover`
+                  : "linear-gradient(135deg, #FFD1D1 0%, #D1D9FF 100%)",
+                borderRadius: "20px",
+              }}
+            />
+          </Col>
+        </Row>
+
+        {/* Кнопка завершения */}
+        <div className="mt-4 mt-md-5">
+          <Button
+            onClick={onExit}
+            className="w-100 py-3 border-0 shadow-sm fw-bold"
+            style={{
+              backgroundColor: "#7D2826",
+              borderRadius: "12px",
+              fontSize: "1rem",
+            }}
+          >
+            Завершить квиз
+          </Button>
+        </div>
       </Container>
     );
   }
 
-  const currentQuestion = questions[currentStep];
-  const isLastQuestion = currentStep === totalQuestions - 1;
+  const currentQuestion = questions[currentStep] || questions[0];
 
   return (
-    <Container className="py-4 text-inter-custom">
-      {/* Прогресс бар */}
-      <Row className="mb-4">
-        <Col>
-          <div className="d-flex justify-content-between mb-2 fw-bold">
-            <span>
-              Вопрос {currentStep + 1} из {totalQuestions}
-            </span>
-            <span>{progressPercent}%</span>
-          </div>
-          <ProgressBar
-            now={progressPercent}
-            variant="success"
-            animated
-            style={{ height: "10px", backgroundColor: "#EFE9D7" }}
-            className="rounded-pill"
+    <Container className="py-4 py-md-5 flex-grow-1 text-inter-custom">
+      {/* Прогресс-бар */}
+      <div
+        className="text-center mb-2 small fw-bold"
+        style={{ color: "#2d3220" }}
+      >
+        Прогресс:{" "}
+        {progressPercent < 10 ? `0${progressPercent}` : progressPercent}%
+      </div>
+      <div
+        className="mb-5 shadow-inner"
+        style={{
+          height: "24px",
+          backgroundColor: "#EFE9D7",
+          borderRadius: "12px",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            width: `${progressPercent}%`,
+            height: "100%",
+            backgroundColor: "#2d3220",
+            transition: "width 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+            borderRadius: "12px",
+          }}
+        />
+      </div>
+
+      <Row className="gx-md-5">
+        {/* Вопрос и Ответы (Первые на мобильном) */}
+        <Col xs={{ span: 12, order: 1 }} md={{ span: 7, order: 2 }}>
+          <h2 className="display-5 fw-bold mb-3" style={{ color: "#2d3220" }}>
+            Вопрос {currentStep + 1}
+          </h2>
+          <p
+            className="fs-5 fw-bold mb-4"
+            style={{ color: "#2d3220", lineHeight: "1.4" }}
+          >
+            {currentQuestion.question}
+          </p>
+
+          <Form>
+            {currentQuestion.options.map((option, idx) => (
+              <div
+                key={idx}
+                className={`d-flex align-items-start mb-3 transition-all ${isChecked ? "pe-none" : "option-hover"}`}
+                style={{ cursor: "pointer" }}
+                onClick={() => setSelectedOption(option)}
+              >
+                <div
+                  className="me-3 mt-1 shadow-sm"
+                  style={{
+                    minWidth: "26px",
+                    height: "26px",
+                    borderRadius: "50%",
+                    backgroundColor:
+                      selectedOption === option ? "#2d3220" : "#EFE9D7",
+                    transition: "background-color 0.2s ease",
+                  }}
+                />
+                <span className="fw-bold fs-5" style={getOptionStyle(option)}>
+                  {option}
+                </span>
+              </div>
+            ))}
+          </Form>
+        </Col>
+
+        {/* Изображение (Под вопросом на мобильном) */}
+        <Col
+          xs={{ span: 12, order: 2 }}
+          md={{ span: 5, order: 1 }}
+          className="mt-4 mt-md-0"
+        >
+          <div
+            className="rounded-4 shadow-sm w-100"
+            style={{
+              aspectRatio: "1/1",
+              backgroundColor: "#7D2826",
+              background: currentQuestion.image
+                ? `url(${currentQuestion.image}) center/cover`
+                : "linear-gradient(135deg, #fce0e0 0%, #d8e1ff 100%)",
+              border: "8px solid rgba(255,255,255,0.2)",
+            }}
           />
         </Col>
       </Row>
 
-      {/* Основной блок квиза */}
-      <Card className="shadow-sm border-0 p-4" style={{ borderRadius: "24px" }}>
-        <Row className="align-items-center">
-          {/* Лево: Картинка */}
-          <Col md={6} className="mb-4 mb-md-0">
-            <div
-              className="rounded overflow-hidden shadow-sm"
-              style={{
-                backgroundImage: `url(${currentQuestion.image})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                aspectRatio: "4/3",
-                backgroundColor: "#7D2826",
-              }}
-            />
-          </Col>
+      {/* Кнопки действий */}
+      <Row className="mt-5 g-3">
+        <Col xs={12} md={6}>
+          <Button
+            className="w-100 py-3 text-white fw-bold border-0 shadow-sm"
+            style={{ backgroundColor: "#7D2826", borderRadius: "15px" }}
+            onClick={onExit}
+          >
+            Завершить квиз
+          </Button>
+        </Col>
+        <Col xs={12} md={6}>
+          <Button
+            className="w-100 py-3 text-white fw-bold border-0 shadow-sm"
+            style={{
+              backgroundColor: "#7D2826",
+              borderRadius: "15px",
+              opacity: !selectedOption ? 0.6 : 1,
+            }}
+            disabled={!selectedOption}
+            onClick={handleCheckOrNext}
+          >
+            {isChecked
+              ? currentStep === questions.length - 1
+                ? "Результат"
+                : "Далее"
+              : "Проверить ответ"}
+          </Button>
+        </Col>
+      </Row>
 
-          {/* Право: Вопрос и ответы */}
-          <Col md={6}>
-            <h3 className="fw-bold mb-4">{currentQuestion.question}</h3>
-
-            <Form>
-              {currentQuestion.options.map((option, index) => (
-                <div
-                  key={index}
-                  className={`p-3 border rounded mb-2 d-flex align-items-center ${
-                    selectedOption === option
-                      ? "border-primary bg-light"
-                      : "hover-bg-light"
-                  }`}
-                  style={{
-                    cursor: "pointer",
-                    transition: "all 0.2s ease-in-out",
-                  }}
-                  onClick={() => handleOptionChange(option)}
-                >
-                  <Form.Check
-                    type="radio"
-                    label={option}
-                    name="quiz-options"
-                    value={option}
-                    checked={selectedOption === option}
-                    onChange={() => handleOptionChange(option)}
-                    id={`option-${index}`}
-                    className="mb-0 w-100 custom-radio"
-                  />
-                </div>
-              ))}
-            </Form>
-          </Col>
-        </Row>
-
-        {/* Кнопки снизу */}
-        <Row className="mt-5 pt-3 border-top">
-          <Col className="d-flex justify-content-between">
-            <Button variant="outline-danger" onClick={onExit} className="px-4">
-              Завершить квиз
-            </Button>
-            <Button
-              style={{
-                backgroundColor: selectedOption ? "#7D2826" : "#ccc",
-                border: "none",
-                cursor: selectedOption ? "pointer" : "not-allowed",
-              }}
-              className="px-4"
-              disabled={!selectedOption}
-              onClick={handleNextQuestion}
-            >
-              {isLastQuestion ? "Завершить" : "Следующий вопрос"}
-            </Button>
-          </Col>
-        </Row>
-      </Card>
+      <style>{`
+        .option-hover:hover div { transform: scale(1.1); }
+        .transition-all { transition: all 0.3s ease; }
+        .shadow-inner { box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
+      `}</style>
     </Container>
   );
 }

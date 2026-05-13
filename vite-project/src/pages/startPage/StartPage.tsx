@@ -3,15 +3,16 @@ import { Button, Card, Col, Container, Row } from "react-bootstrap";
 interface StartPageProps {
   onStart: () => void;
 }
+
 export default function StartPage({ onStart }: StartPageProps) {
-  // Данные для квизов (можно вынести в массив)
   const quizzes = [1, 2, 3];
 
   return (
-    <Container className="py-5">
+    <Container className="py-4 py-md-5">
       <Row className="justify-content-center">
         {/* Hero секция */}
         <Col
+          xs={12}
           md={10}
           className="text-center p-3 d-flex flex-column align-items-center mb-5"
         >
@@ -37,17 +38,12 @@ export default function StartPage({ onStart }: StartPageProps) {
         </Col>
 
         {/* Текстовые блоки */}
-        <Col md={10} className="mb-5">
+        <Col xs={12} md={10} className="mb-5">
           <h4 className="text-start fw-bold">First subheader</h4>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
             laborum nesciunt dignissimos facere, praesentium sequi! Nemo
-            repudiandae nobis placeat officiis at itaque voluptates, sit
-            perspiciatis magni esse architecto ipsum neque. Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Quos at voluptatum illo
-            provident dolore necessitatibus, dolor tempora placeat possimus
-            culpa aperiam temporibus ducimus laborum delectus non unde ea ullam.
-            Illo!
+            repudiandae nobis placeat officiis at itaque voluptates...
           </p>
 
           <h4 className="text-start fw-bold mt-4">
@@ -55,31 +51,22 @@ export default function StartPage({ onStart }: StartPageProps) {
           </h4>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-            laborum nesciunt dignissimos facere, praesentium sequi! Nemo
-            repudiandae nobis placeat officiis at itaque voluptates, sit
-            perspiciatis magni esse architecto ipsum neque. Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Quos at voluptatum illo
-            provident dolore necessitatibus, dolor tempora placeat possimus
-            culpa aperiam temporibus ducimus laborum delectus non unde ea ullam.
-            Illo!
+            laborum nesciunt dignissimos facere, praesentium sequi!...
           </p>
         </Col>
 
         {/* Секция Квизов */}
-        <Col md={12}>
+        <Col xs={12}>
           <h1 className="text-center mb-5 mt-4">
             Предлагаем пройти наши квизы
           </h1>
           <Row className="g-4">
-            {" "}
-            {/* g-4 задает отступы между карточками */}
             {quizzes.map((item) => (
-              <Col key={item} xs={12} md={4}>
+              <Col key={item} xs={12} sm={6} md={4}>
                 <Card
                   className="h-100 border-0 shadow-sm"
                   style={{ borderRadius: "18px", backgroundColor: "#EFE9D7" }}
                 >
-                  {/* Заглушка вместо картинки квиза */}
                   <div
                     style={{
                       height: "180px",
