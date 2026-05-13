@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import QuizPage from "./pages/QuizPage/QuizPage";
 import StartPage from "./pages/startPage/StartPage";
 import "bootstrap/dist/css/bootstrap.min.css";
