@@ -5,7 +5,7 @@ interface StartPageProps {
 }
 
 export default function StartPage({ onStart }: StartPageProps) {
-  const quizzes = [1, 2, 3];
+  const quizzes = [1];
 
   return (
     <Container className="py-4 py-md-5">
@@ -16,9 +16,11 @@ export default function StartPage({ onStart }: StartPageProps) {
           md={10}
           className="text-center p-3 d-flex flex-column align-items-center mb-5"
         >
-          <h1 className="fw-bolder display-4">Заголовок</h1>
+          <h1 className="fw-bolder display-4">
+            А. А. Ухтомский: Великий ученый и его наследие
+          </h1>
           <p className="fw-medium text-muted mb-4">
-            В дальнейшем все подписи можно изменить
+            Погрузитесь в историю жизни и научных открытий знаменитого физиолога
           </p>
           <div
             style={{
@@ -32,26 +34,33 @@ export default function StartPage({ onStart }: StartPageProps) {
             className="d-flex align-items-center justify-content-center text-white"
           >
             <span className="opacity-50 text-inter-custom">
-              Здесь могла быть ваша картинка
+              Мемориальный дом-музей академика А. А. Ухтомского в Рыбинске
             </span>
           </div>
         </Col>
 
         {/* Текстовые блоки */}
         <Col xs={12} md={10} className="mb-5">
-          <h4 className="text-start fw-bold">First subheader</h4>
+          <h4 className="text-start fw-bold">Принцип доминанты</h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-            laborum nesciunt dignissimos facere, praesentium sequi! Nemo
-            repudiandae nobis placeat officiis at itaque voluptates...
+            Алексей Алексеевич Ухтомский — выдающийся отечественный физиолог,
+            создавший учение о доминанте как главном принципе работы головного
+            мозга. Согласно его теории, в организме всегда существует
+            господствующий очаг возбуждения, который предопределяет характер
+            реакции человека на внешние раздражители и направляет наше
+            поведение, мысли и действия в конкретный момент времени.
           </p>
 
           <h4 className="text-start fw-bold mt-4">
-            Last subheader, for good measure
+            Рыбинские корни и путь в науке
           </h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-            laborum nesciunt dignissimos facere, praesentium sequi!...
+            Родовое гнездо князей Ухтомских находилось именно на рыбинской
+            земле, где будущий академик провел свои детские годы. Сочетая в себе
+            глубокую духовность, интерес к философии и строгий научный подход,
+            Ухтомский оставил колоссальный след не только в биологии и
+            физиологии, но и в понимании человеческой психологии и природы
+            собеседника.
           </p>
         </Col>
 
@@ -60,9 +69,15 @@ export default function StartPage({ onStart }: StartPageProps) {
           <h1 className="text-center mb-5 mt-4">
             Предлагаем пройти наши квизы
           </h1>
-          <Row className="g-4">
+          <Row className="g-4 justify-content-center">
             {quizzes.map((item) => (
-              <Col key={item} xs={12} sm={6} md={4}>
+              <Col
+                key={item}
+                xs={12}
+                sm={6}
+                md={6}
+                className="align-items-center"
+              >
                 <Card
                   className="h-100 border-0 shadow-sm"
                   style={{ borderRadius: "18px", backgroundColor: "#EFE9D7" }}
@@ -77,8 +92,9 @@ export default function StartPage({ onStart }: StartPageProps) {
                   <Card.Body className="d-flex flex-column">
                     <Card.Title className="fw-bold">Квиз #{item}</Card.Title>
                     <Card.Text className="flex-grow-1 text-muted">
-                      Краткое описание квиза, которое поможет пользователю
-                      понять, о чем идет речь.
+                      Проверьте свои знания о биографии А. А. Ухтомского, его
+                      научных трудах, открытиях в области физиологии и истории
+                      мемориального дома в Рыбинске.
                     </Card.Text>
                     <Button
                       onClick={onStart}
