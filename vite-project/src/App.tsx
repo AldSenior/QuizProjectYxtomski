@@ -11,13 +11,22 @@ function App() {
   const [view, setView] = useState<ViewState>("start");
 
   return (
-    <div className="" style={{ backgroundColor: "#8D8C6A" }}>
+    // Добавляем классы d-flex (включает флексбокс), flex-column (выстраивает элементы сверху вниз)
+    // и min-vh-100 (растягивает контейнер минимум на 100% высоты экрана)
+    <div
+      className="d-flex flex-column min-vh-100"
+      style={{ backgroundColor: "#8D8C6A" }}
+    >
       <Header />
+
+      {/* Сами страницы будут автоматически растягиваться, заполняя пустоту,
+          благодаря классу flex-grow-1 внутри их Container */}
       {view === "start" ? (
         <StartPage onStart={() => setView("quiz")} />
       ) : (
         <QuizPage onExit={() => setView("start")} />
       )}
+
       <Footer />
     </div>
   );

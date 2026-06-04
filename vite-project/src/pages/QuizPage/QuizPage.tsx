@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+
 interface Question {
   id: number;
   question: string;
@@ -26,23 +27,10 @@ export default function QuizPage({ onExit }: QuizPageProps) {
         "В каком старинном русском городе прошли детские годы Алексея Ухтомского, и где сейчас находится его дом-музей?",
       options: ["Ярославль", "Рыбинск", "Кострома", "Углич"],
       correctAnswer: "Рыбинск",
-      image: "/vopros.png",
+      image: "/images/1_Rybinsk_dom_Uhtomskogo.jpg",
     },
     {
       id: 2,
-      question:
-        "Алексей Алексеевич принадлежал к древнему княжескому роду. От какого легендарного князя вела свою родословную эта династия?",
-      options: [
-        "Рюрика",
-        "Владимира Мономаха",
-        "Александра Невского",
-        "Дмитрия Донского",
-      ],
-      correctAnswer: "Рюрика",
-      image: "/vopros.png",
-    },
-    {
-      id: 3,
       question:
         "Кто из известных святых, с которым Ухтомский случайно познакомился на пароходе, оказал серьёзное влияние на его решение поступать в Духовную академию?",
       options: [
@@ -52,10 +40,10 @@ export default function QuizPage({ onExit }: QuizPageProps) {
         "Лука Войно-Ясенецкий",
       ],
       correctAnswer: "Иоанн Кронштадтский",
-      image: "/vopros.png",
+      image: "/images/2_ioann_kronshtadtskiy.jpg",
     },
     {
-      id: 4,
+      id: 3,
       question:
         "Как назывался главный научный труд Ухтомского, защищенный им в Духовной академии, который парадоксальным образом подтолкнул его к изучению физиологии?",
       options: [
@@ -65,10 +53,10 @@ export default function QuizPage({ onExit }: QuizPageProps) {
         "«О единстве научного и религиозного познания»",
       ],
       correctAnswer: "«Космологическое доказательство Бытия Божия»",
-      image: "/vopros.png",
+      image: "/images/3_9_bytie_bozhie.jpeg",
     },
     {
-      id: 5,
+      id: 4,
       question:
         "Кого Алексей Ухтомский на протяжении всей жизни называл своим главным «учителем мысли» и был благодарен ему за привитый интерес к естествознанию?",
       options: [
@@ -78,10 +66,10 @@ export default function QuizPage({ onExit }: QuizPageProps) {
         "Профессора И.П. Павлова",
       ],
       correctAnswer: "Учителя математики И.П. Долбню",
-      image: "/vopros.png",
+      image: "/images/4_Dolbnya_16.png",
     },
     {
-      id: 6,
+      id: 5,
       question:
         "Выпускникам духовных семинарий и академий в империи было запрещено поступать на естественные отделения университетов. На какой факультет Петербургского университета пришлось поступить Ухтомскому в 1899 году, чтобы год спустя всё же перевестись на физико-математический?",
       options: [
@@ -91,10 +79,10 @@ export default function QuizPage({ onExit }: QuizPageProps) {
         "Физико-математический (он сразу поступил туда, преодолев запрет)",
       ],
       correctAnswer: "Восточный",
-      image: "/vopros.png",
+      image: "/images/5_piterskiy univer.jpg",
     },
     {
-      id: 7,
+      id: 6,
       question:
         "В 1911 году Ухтомский защитил магистерскую диссертацию, в которой впервые изложил принцип, ставший его главным научным открытием. О каком принципе идёт речь?",
       options: [
@@ -104,12 +92,12 @@ export default function QuizPage({ onExit }: QuizPageProps) {
         "Принципе парабиоза",
       ],
       correctAnswer: "Принципе доминанты",
-      image: "/vopros.png",
+      image: "/images/6_dominanta.png",
     },
     {
-      id: 8,
+      id: 7,
       question:
-        "Имя какого своего учителя и предшественника Ухтомский чтил больше всего и чью кафедру он возглавил в Петроградском университете после его смерти?",
+        "Имя какого своего учителя и предшественника Ухтомского чтил больше всего и чщую кафедру он возглавел в Петроградском университете после его смерти?",
       options: [
         "И.М. Сеченова",
         "В.М. Бехтерева",
@@ -117,10 +105,10 @@ export default function QuizPage({ onExit }: QuizPageProps) {
         "И.П. Павлова",
       ],
       correctAnswer: "Н.Е. Введенского",
-      image: "/vopros.png",
+      image: "/images/7_vvedenskiy.jpg",
     },
     {
-      id: 9,
+      id: 8,
       question:
         "В 1920 году Алексей Алексеевич был арестован и несколько месяцев провёл в заключении. Из-за какой своей неосторожности он оказался под арестом?",
       options: [
@@ -131,10 +119,10 @@ export default function QuizPage({ onExit }: QuizPageProps) {
       ],
       correctAnswer:
         "Из-за неосторожных разговоров в научном обществе, сочтенных контрреволюционными",
-      image: "/vopros.png",
+      image: "/images/8_10_portret4.jpg",
     },
     {
-      id: 10,
+      id: 9,
       question:
         "Помимо глубоких научных знаний, Ухтомский обладал множеством талантов. Какие два увлечения из перечисленных ему принадлежали?",
       options: [
@@ -145,31 +133,18 @@ export default function QuizPage({ onExit }: QuizPageProps) {
       ],
       correctAnswer:
         "Иконопись и знание древних языков (включая древнееврейский)",
-      image: "/vopros.png",
+      image: "/images/3_9_bytie_bozhie.jpeg",
     },
     {
-      id: 11,
+      id: 10,
       question:
         "Ухтомский был глубоко верующим человеком. В 1920 году, уже при советской власти, он принял монашеский постриг. Какое имя он получил в монашестве?",
       options: ["Алексий", "Алипий", "Андрей", "Анатолий"],
       correctAnswer: "Алипий",
-      image: "/vopros.png",
+      image: "/images/8_10_portret4.jpg",
     },
     {
-      id: 12,
-      question:
-        "С 1911 года и до конца жизни Алексей Алексеевич исполнял важную церковную должность в храме на Васильевском острове. Какую именно?",
-      options: [
-        "Был священником (иереем)",
-        "Был регентом хора",
-        "Был старостой (единоверческого Никольского храма)",
-        "Был псаломщиком",
-      ],
-      correctAnswer: "Был старостой (единоверческого Никольского храма)",
-      image: "/vopros.png",
-    },
-    {
-      id: 13,
+      id: 11,
       question:
         "Как сложилась судьба старшего брата Алексея Ухтомского, Александра?",
       options: [
@@ -180,10 +155,10 @@ export default function QuizPage({ onExit }: QuizPageProps) {
       ],
       correctAnswer:
         "Стал церковным деятелем, архиепископом Андреем, и был расстрелян в 1937 году",
-      image: "/vopros.png",
+      image: "/images/11_александр.jpg",
     },
     {
-      id: 14,
+      id: 12,
       question:
         "Какая высокая научная награда была присуждена Ухтомскому в 1932 году, ещё до избрания академиком?",
       options: [
@@ -193,10 +168,10 @@ export default function QuizPage({ onExit }: QuizPageProps) {
         "Орден Трудового Красного Знамени",
       ],
       correctAnswer: "Премия имени В.И. Ленина",
-      image: "/vopros.png",
+      image: "/images/12_Премия_имени_В.И. Ленина.jpeg",
     },
     {
-      id: 15,
+      id: 13,
       question:
         "Алексей Алексеевич Ухтомский умер 31 августа 1942 года в Ленинграде. Какие трагические обстоятельства стали причиной его смерти?",
       options: [
@@ -207,24 +182,10 @@ export default function QuizPage({ onExit }: QuizPageProps) {
       ],
       correctAnswer:
         "Блокада Ленинграда (умер от голода и истощения, отказавшись от эвакуации)",
-      image: "/vopros.png",
+      image: "/images/13.jpeg",
     },
     {
-      id: 16,
-      question:
-        'В каком году вышла в свет программная статья Ухтомского, в которой он впервые развернуто изложил принцип доминанты как основной принцип работы нервных центров, и которая стала "визитной карточкой" его учения?',
-      options: [
-        "1911 год (в его магистерской диссертации)",
-        "1923 год («Доминанта как рабочий принцип нервных центров»)",
-        "1927 год («Парабиоз и доминанта»)",
-        "1935 год («Возбуждение, утомление, торможение»)",
-      ],
-      correctAnswer:
-        "1923 год («Доминанта как рабочий принцип нервных центров»)",
-      image: "/vopros.png",
-    },
-    {
-      id: 17,
+      id: 14,
       question:
         "Согласно учению Ухтомского, что происходит в нервной системе, когда возникает доминанта — господствующий очаг возбуждения?",
       options: [
@@ -235,70 +196,23 @@ export default function QuizPage({ onExit }: QuizPageProps) {
       ],
       correctAnswer:
         "Доминантный очаг притягивает к себе импульсы из других центров, усиливаясь за их счет и тормозя их активность",
-      image: "/vopros.png",
+      image: "/images/14portret2.jpg",
     },
     {
-      id: 18,
+      id: 15,
       question:
-        "Ухтомский рассматривал доминанту не просто как физиологический, но и как психологический и даже нравственный феномен. Какое понятие, важное для философии диалога, он ввел для описания высшего уровня человеческого общения, когда мы воспринимаем другого не как наше отражение, а как уникальную личность?",
+        "С 1911 года и до конца жизни Алексей Алексеевич исполнял важную церковную должность в храме на Васильевском острове. Какую именно?",
       options: [
-        '"Сверхчеловек"',
-        '"Заслуженный собеседник"',
-        '"Коллективный разум"',
-        '"Идеальное Я"',
+        "Был священником (иереем)",
+        "Был регентом хора",
+        "Был старостой (единоверческого Никольского храма)",
+        "Был псаломщиком",
       ],
-      correctAnswer: '"Заслуженный собеседник"',
-      image: "/vopros.png",
-    },
-    {
-      id: 19,
-      question:
-        "Как называется другая важная работа Ухтомского, вышедшая в 1927 году, где он рассматривает взаимосвязь своего учения о доминанте с теорией парабиоза, разработанной его учителем — Н.Е. Введенским?",
-      options: [
-        "«Доминанта как фактор поведения»",
-        "«Физиология двигательного аппарата»",
-        "«Парабиоз и доминанта»",
-        "«Система рефлексов в восходящем ряду»",
-      ],
-      correctAnswer: "«Парабиоз и доминанта»",
-      image: "/vopros.png",
-    },
-    {
-      id: 20,
-      question:
-        "Идеи Ухтомского о доминанте нашли применение далеко за пределами физиологии. Согласно современным исследованиям, какой феномен, выявленный в педагогике, подтверждает правильность его теории о том, что одна доминанта может усиливать другую?",
-      options: [
-        'Феномен "эмоционального выгорания" учителя',
-        'Феномен "коллективной резонансной доминанты познания" (усиление познавательной активности при объединении пищевой и познавательной доминант)',
-        'Феномен "клипового мышления" у студентов',
-        'Феномен "цифрового аутизма"',
-      ],
-      correctAnswer:
-        'Феномен "коллективной резонансной доминанты познания" (усиление познавательной активности при объединении пищевой и познавательной доминант)',
-      image: "/vopros.png",
-    },
-    {
-      id: 21,
-      question:
-        "В своих философских исканиях Ухтомский ввел понятие, позже заимствованное М.М. Бахтиным, которое описывает неразрывную связь пространственных и временных отношений в переживании и поведении человека. Как называется это понятие?",
-      options: ["Континуум", "Хронотоп", "Ноосфера", "Биосфера"],
-      correctAnswer: "Хронотоп",
-      image: "/vopros.png",
-    },
-    {
-      id: 22,
-      question:
-        "Последней работой ученого, которую он подготовил, но не успел зачитать из-за смерти в блокадном Ленинграде, стал доклад. Еще в 1920-е годы он начал читать новаторский курс, связанный с этой темой, что делает его одним из основоположников научной организации труда в СССР. Как назывался этот доклад?",
-      options: [
-        "«Система рефлексов в восходящем ряду»",
-        "«Физиология двигательного аппарата как основа физиологии труда»",
-        "«15 лет советской физиологии»",
-        "«Возбуждение, утомление, торможение»",
-      ],
-      correctAnswer: "«Система рефлексов в восходящем ряду»",
-      image: "/vopros.png",
+      correctAnswer: "Был старостой (единоверческого Никольского храма)",
+      image: "/images/15portret3.jpg",
     },
   ];
+
   const totalQuestions = questions.length;
   const progressPercent = Math.round((currentStep / totalQuestions) * 100);
 
@@ -324,13 +238,12 @@ export default function QuizPage({ onExit }: QuizPageProps) {
   const getOptionStyle = (option: string) => {
     if (!isChecked) return { color: "#2d3220" };
     if (option === questions[currentStep].correctAnswer)
-      return { color: "#28a745", fontWeight: "bold" };
+      return { color: "#28a745", fontWeight: "bold" as const };
     if (option === selectedOption)
-      return { color: "#dc3545", fontWeight: "bold" };
+      return { color: "#dc3545", fontWeight: "bold" as const };
     return { color: "#2d3220", opacity: 0.5 };
   };
 
-  // Метод для вывода текста-комментария в зависимости от успешности
   const getScoreComment = () => {
     const ratio = score / totalQuestions;
     if (ratio === 1)
@@ -345,10 +258,9 @@ export default function QuizPage({ onExit }: QuizPageProps) {
   if (isFinished) {
     return (
       <Container
-        className="py-4 py-md-5 flex-grow-1 text-inter-custom"
+        className="py-4 py-md-5 d-flex flex-column justify-content-center flex-grow-1 text-inter-custom"
         style={{ maxWidth: "900px" }}
       >
-        {/* Прогресс-бар 100% */}
         <div
           className="text-center mb-2 small fw-bold"
           style={{ color: "#2d3220" }}
@@ -374,62 +286,81 @@ export default function QuizPage({ onExit }: QuizPageProps) {
         </div>
 
         <Row className="align-items-center gx-md-5 justify-content-center">
-          {/* Текстовый блок */}
+          {/* ИЗМЕНЕНО: Сделали текст результатов значительно крупнее и жирнее */}
           <Col
             xs={{ span: 12, order: 1 }}
             md={{ span: 6, order: 2 }}
             className="text-start pt-2"
           >
             <h2
-              className="fw-bold mb-1"
-              style={{ color: "#2d3220", fontSize: "2.5rem" }}
+              className="fw-black mb-2"
+              style={{ color: "#2d3220", fontSize: "3rem", fontWeight: 900 }}
             >
               Ваш результат
             </h2>
             <p
-              className="fw-bold mb-1"
-              style={{ color: "#2d3220", fontSize: "0.95rem" }}
+              className="mb-2"
+              style={{ color: "#2d3220", fontSize: "1.25rem", fontWeight: 800 }}
             >
               Поздравляем!
             </p>
             <p
-              className="mb-3"
-              style={{ color: "#2d3220", fontSize: "0.9rem", opacity: 0.8 }}
+              className="mb-4"
+              style={{
+                color: "#2d3220",
+                fontSize: "1.15rem",
+                fontWeight: 600,
+                lineHeight: "1.5",
+              }}
             >
               {getScoreComment()}
             </p>
 
-            {/* Исправлен цвет текста счета, чтобы он не сливался с фоном */}
             <div
-              className="display-4 fw-bold mb-4 mb-md-5"
+              className="fw-black mb-4 mb-md-5"
               style={{
                 color: "#2d3220",
-                letterSpacing: "-1px",
+                letterSpacing: "-2px",
+                fontSize: "4.5rem",
+                fontWeight: 900,
+                lineHeight: 1,
               }}
             >
               {score} / {totalQuestions}
             </div>
           </Col>
 
-          {/* Картинка */}
           <Col
             xs={{ span: 10, order: 2 }}
             md={{ span: 6, order: 1 }}
             className="mb-4 mb-md-0 d-flex justify-content-center"
           >
             <div
-              className="rounded-4 shadow-sm w-100"
+              className="rounded-4 shadow-sm w-100 overflow-hidden"
               style={{
                 aspectRatio: "1/1",
                 maxWidth: "320px",
-                background: "url(/vopros.png)",
-                borderRadius: "20px",
+                backgroundColor: "#8D8C6A",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
-            />
+            >
+              <img
+                src="/images/13.jpeg"
+                alt="Результат"
+                // ИЗМЕНЕНО: Использован clip-path для гарантированного скругления видимых краев контента
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  clipPath: "inset(0% round 16px)",
+                }}
+              />
+            </div>
           </Col>
         </Row>
 
-        {/* Кнопка завершения */}
         <div className="mt-4 mt-md-5">
           <Button
             onClick={onExit}
@@ -437,7 +368,7 @@ export default function QuizPage({ onExit }: QuizPageProps) {
             style={{
               backgroundColor: "#7D2826",
               borderRadius: "12px",
-              fontSize: "1rem",
+              fontSize: "1.1rem",
             }}
           >
             Завершить квиз
@@ -451,7 +382,6 @@ export default function QuizPage({ onExit }: QuizPageProps) {
 
   return (
     <Container className="py-4 py-md-5 flex-grow-1 text-inter-custom">
-      {/* Прогресс-бар */}
       <div
         className="text-center mb-2 small fw-bold"
         style={{ color: "#2d3220" }}
@@ -480,8 +410,12 @@ export default function QuizPage({ onExit }: QuizPageProps) {
       </div>
 
       <Row className="gx-md-5">
-        {/* Вопрос и Ответы */}
-        <Col xs={{ span: 12, order: 1 }} md={{ span: 7, order: 2 }}>
+        {/* ИЗМЕНЕНО: Зафиксировали минимальную высоту контента (minHeight), чтобы избежать прыжков экрана */}
+        <Col
+          xs={{ span: 12, order: 1 }}
+          md={{ span: 7, order: 2 }}
+          style={{ minHeight: "420px" }}
+        >
           <h2 className="display-5 fw-bold mb-3" style={{ color: "#2d3220" }}>
             Вопрос {currentStep + 1}
           </h2>
@@ -519,27 +453,53 @@ export default function QuizPage({ onExit }: QuizPageProps) {
           </Form>
         </Col>
 
-        {/* Изображение */}
         <Col
           xs={{ span: 12, order: 2 }}
           md={{ span: 5, order: 1 }}
-          className="mt-4 mt-md-0"
+          className="mt-4 mt-md-0 d-flex align-items-center justify-content-center"
         >
           <div
-            className="rounded-4 shadow-sm w-100"
+            className="rounded-4 shadow-sm overflow-hidden w-100"
             style={{
               aspectRatio: "1/1",
-              backgroundColor: "#7D2826",
-              background: currentQuestion.image
-                ? `url(${currentQuestion.image}) center/cover`
-                : "linear-gradient(135deg, #fce0e0 0%, #d8e1ff 100%)",
-              border: "8px solid rgba(255,255,255,0.2)",
+              maxWidth: "400px",
+              backgroundColor: "#8D8C6A",
+              position: "relative",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
-          />
+          >
+            {currentQuestion.image ? (
+              <img
+                src={currentQuestion.image}
+                alt={`Вопрос ${currentStep + 1}`}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  display: "block",
+                  // ИЗМЕНЕНО: Добавлен жесткий clip-path среза, обрезающий картинку по форме скругленного прямоугольника
+                  clipPath: "inset(0% round 16px)",
+                }}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = "none";
+                }}
+              />
+            ) : (
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  background:
+                    "linear-gradient(135deg, #fce0e0 0%, #d8e1ff 100%)",
+                }}
+              />
+            )}
+          </div>
         </Col>
       </Row>
 
-      {/* Кнопки действий */}
       <Row className="mt-5 g-3">
         <Col xs={12} md={6}>
           <Button

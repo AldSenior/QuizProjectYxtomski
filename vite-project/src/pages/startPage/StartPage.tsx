@@ -10,13 +10,13 @@ export default function StartPage({ onStart }: StartPageProps) {
   return (
     <Container className="py-4 py-md-5">
       <Row className="justify-content-center">
-        {/* Hero секция */}
+        {/* Hero секция с портретом */}
         <Col
           xs={12}
           md={10}
           className="text-center p-3 d-flex flex-column align-items-center mb-5"
         >
-          <h1 className="fw-bolder display-4">
+          <h1 className="fw-bolder display-4 mb-3">
             А. А. Ухтомский: Великий ученый и его наследие
           </h1>
           <p className="fw-medium text-muted mb-4">
@@ -24,18 +24,19 @@ export default function StartPage({ onStart }: StartPageProps) {
           </p>
           <div
             style={{
-              backgroundColor: "#7D2826",
               borderRadius: "24px",
               width: "100%",
               maxWidth: "800px",
-              aspectRatio: "16/9",
+              aspectRatio: "16/10",
               boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+              overflow: "hidden",
             }}
-            className="d-flex align-items-center justify-content-center text-white"
           >
-            <span className="opacity-50 text-inter-custom">
-              Мемориальный дом-музей академика А. А. Ухтомского в Рыбинске
-            </span>
+            <img
+              src="/images/portret1.jpg"
+              alt="Алексей Алексеевич Ухтомский"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
           </div>
         </Col>
 
@@ -43,7 +44,7 @@ export default function StartPage({ onStart }: StartPageProps) {
         <Col xs={12} md={10} className="mb-5">
           <h4 className="text-start fw-bold">Принцип доминанты</h4>
           <p>
-            Алексей Алексеевич Ухтомский — выдающийся отечественный физиолог,
+            Aлексей Алексеевич Ухтомский — выдающийся отечественный физиолог,
             создавший учение о доминанте как главном принципе работы головного
             мозга. Согласно его теории, в организме всегда существует
             господствующий очаг возбуждения, который предопределяет характер
@@ -65,7 +66,7 @@ export default function StartPage({ onStart }: StartPageProps) {
         </Col>
 
         {/* Секция Квизов */}
-        <Col xs={12}>
+        <Col xs={12} id="quizzes-section" style={{ scrollMarginTop: "20px" }}>
           <h1 className="text-center mb-5 mt-4">
             Предлагаем пройти наши квизы
           </h1>
@@ -79,16 +80,16 @@ export default function StartPage({ onStart }: StartPageProps) {
                 className="align-items-center"
               >
                 <Card
-                  className="h-100 border-0 shadow-sm"
+                  className="h-100 border-0 shadow-sm overflow-hidden"
                   style={{ borderRadius: "18px", backgroundColor: "#EFE9D7" }}
                 >
                   <div
                     style={{
-                      height: "180px",
-                      backgroundColor: "#EFE9D7",
-                      borderRadius: "18px 18px 0 0",
+                      height: "200px",
+                      background:
+                        "url('/images/1_Rybinsk_dom_Uhtomskogo.jpg') center/cover",
                     }}
-                  ></div>
+                  />
                   <Card.Body className="d-flex flex-column">
                     <Card.Title className="fw-bold">Квиз #{item}</Card.Title>
                     <Card.Text className="flex-grow-1 text-muted">
@@ -99,7 +100,7 @@ export default function StartPage({ onStart }: StartPageProps) {
                     <Button
                       onClick={onStart}
                       style={{ backgroundColor: "#7D2826", border: "none" }}
-                      className="w-100 mt-3"
+                      className="w-100 mt-3 py-2 fw-bold"
                     >
                       Пройти квиз
                     </Button>

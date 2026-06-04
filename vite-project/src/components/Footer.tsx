@@ -1,4 +1,5 @@
 import { Col, Container, Row } from "react-bootstrap";
+
 export default function Footer() {
   return (
     <footer
@@ -6,37 +7,44 @@ export default function Footer() {
       style={{ backgroundColor: "#2d3220", color: "#fff" }}
     >
       <Container>
-        <Row>
+        <Row className="justify-content-between align-items-center">
           <Col xs={12} md={6} className="mb-4 mb-md-0">
-            <h5 className="fw-bold">Namedly</h5>
-            <p className="small opacity-75 w-75">
-              Descriptive line about what your company does.
-            </p>
+            <h5 className="fw-bold mb-3">
+              Информационно-просветительские квизы
+            </h5>
+
+            {/* Иконки соцсетей на основе дизайна */}
             <div className="d-flex gap-2">
-              <div
+              <a
+                href="https://vk.com"
+                target="_blank"
+                rel="noreferrer"
                 style={{
-                  width: 24,
-                  height: 24,
-                  backgroundColor: "#fff",
-                  borderRadius: "4px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: 24,
-                  height: 24,
+                  display: "flex",
+                  width: 32,
+                  height: 32,
                   backgroundColor: "#0077FF",
-                  borderRadius: "4px",
+                  borderRadius: "8px",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "#fff",
+                  textDecoration: "none",
+                  fontWeight: "bold",
                 }}
-              ></div>
+              >
+                вк
+              </a>
             </div>
           </Col>
-          <Col xs={6} md={3}>
-            <ul className="list-unstyled small  opacity-75">
-              <li className="mb-2">Support</li>
-              <li className="mb-2">Contact</li>
-              <li className="mb-2">Support</li>
-              <li>Legal</li>
+          <Col xs={12} md={3} className="text-md-end">
+            <ul className="list-unstyled small opacity-75 mb-0">
+              <li className="mb-2" style={{ cursor: "pointer" }}>
+                Support
+              </li>
+              <li className="mb-2" style={{ cursor: "pointer" }}>
+                Contact
+              </li>
+              <li style={{ cursor: "pointer" }}>Legal</li>
             </ul>
           </Col>
         </Row>
