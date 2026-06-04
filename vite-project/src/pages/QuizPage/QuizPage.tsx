@@ -463,7 +463,7 @@ export default function QuizPage({ onExit }: QuizPageProps) {
             style={{
               aspectRatio: "1/1",
               maxWidth: "400px",
-              backgroundColor: "#8D8C6A",
+              backgroundColor: "#8D8C6A", // Базовый цвет на случай, если картинки нет
               position: "relative",
               display: "flex",
               alignItems: "center",
@@ -471,21 +471,42 @@ export default function QuizPage({ onExit }: QuizPageProps) {
             }}
           >
             {currentQuestion.image ? (
-              <img
-                src={currentQuestion.image}
-                alt={`Вопрос ${currentStep + 1}`}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "contain",
-                  display: "block",
-                  // ИЗМЕНЕНО: Добавлен жесткий clip-path среза, обрезающий картинку по форме скругленного прямоугольника
-                  clipPath: "inset(0% round 16px)",
-                }}
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = "none";
-                }}
-              />
+              <>
+                {/* 1. Размытый задний фон из той же картинки */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "-10%",
+                    left: "-10%",
+                    right: "-10%",
+                    bottom: "-10%",
+                    backgroundImage: `url(${currentQuestion.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    filter: "blur(20px)",
+                    opacity: 0.6, // Делаем фон чуть тусклее, чтобы выделить главное фото
+                    zIndex: 1,
+                  }}
+                />
+
+                {/* 2. Сама картинка, полностью влезающая в квадрат */}
+                <img
+                  src={currentQuestion.image}
+                  alt={`Вопрос ${currentStep + 1}`}
+                  style={{
+                    position: "relative",
+                    zIndex: 2,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                    padding: "16px", // Небольшой отступ, чтобы фото не липло к краям рамки
+                    filter: "drop-shadow(0 10px 15px rgba(0,0,0,0.3))", // Добавляем объемную тень
+                  }}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = "none";
+                  }}
+                />
+              </>
             ) : (
               <div
                 style={{
